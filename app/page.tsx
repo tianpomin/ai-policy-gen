@@ -1,65 +1,103 @@
-import Image from "next/image";
+import Link from 'next/link'
 
-export default function Home() {
+const FEATURES = [
+  { icon: '🤖', title: 'AI provider disclosure', desc: 'Names OpenAI, Anthropic, Google, Azure, and others in your data sharing clauses.' },
+  { icon: '🎓', title: 'Training data clauses', desc: 'Covers whether you use user data to fine-tune models, with opt-out rights.' },
+  { icon: '⚖️', title: 'EU AI Act compliance', desc: 'Generates transparency disclosures required by the EU AI Act.' },
+  { icon: '🌍', title: 'GDPR + CCPA ready', desc: 'Includes the right clauses for EU, UK, California, Canada, and more.' },
+  { icon: '©️', title: 'AI output ownership', desc: 'Clarifies who owns AI-generated content — company, user, or shared.' },
+  { icon: '🚫', title: 'Automated decision rights', desc: "Addresses users' right to contest automated AI decisions (GDPR Art. 22)." },
+]
+
+const COMPARISON = [
+  ['Training data disclosure', false, true],
+  ['AI provider naming', false, true],
+  ['EU AI Act clauses', false, true],
+  ['AI content ownership', false, true],
+  ['Automated decision rights', false, true],
+  ['GDPR / CCPA', true, true],
+] as [string, boolean, boolean][]
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="min-h-screen bg-white">
+      <nav className="border-b border-gray-100">
+        <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
+          <span className="text-blue-600 font-bold text-lg">AI Policy Gen</span>
+          <Link href="/generate" className="btn-primary text-sm">Generate for free →</Link>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </nav>
+
+      <section className="max-w-3xl mx-auto px-4 pt-20 pb-16 text-center">
+        <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 text-blue-700 text-xs font-medium rounded-full mb-6 border border-blue-100">
+          ✨ Built specifically for AI products — not a generic generator
         </div>
-      </main>
+        <h1 className="text-4xl font-bold text-gray-900 leading-tight mb-5">
+          Legal documents for<br />
+          <span className="text-blue-600">AI-powered products</span>
+        </h1>
+        <p className="text-lg text-gray-500 mb-8 max-w-xl mx-auto">
+          Generate a Privacy Policy and Terms of Service that cover AI training data,
+          LLM provider disclosure, EU AI Act, and automated decision-making rights.
+          Free. No account required.
+        </p>
+        <Link href="/generate" className="inline-block btn-primary text-base px-8 py-3">
+          Generate my documents →
+        </Link>
+        <p className="text-xs text-gray-400 mt-3">Takes about 3 minutes · Privacy Policy + Terms of Service</p>
+      </section>
+
+      <section className="max-w-2xl mx-auto px-4 pb-20">
+        <h2 className="text-center text-xl font-semibold text-gray-900 mb-6">What generic generators miss</h2>
+        <div className="border border-gray-200 rounded-xl overflow-hidden">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="bg-gray-50">
+                <th className="text-left px-5 py-3 font-medium text-gray-600">Clause</th>
+                <th className="text-center px-4 py-3 font-medium text-gray-400">Generic tool</th>
+                <th className="text-center px-4 py-3 font-medium text-blue-600">AI Policy Gen</th>
+              </tr>
+            </thead>
+            <tbody>
+              {COMPARISON.map(([label, generic, us], i) => (
+                <tr key={label} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                  <td className="px-5 py-3 text-gray-700">{label}</td>
+                  <td className="text-center px-4 py-3 text-lg">{generic ? '✅' : '❌'}</td>
+                  <td className="text-center px-4 py-3 text-lg">{us ? '✅' : '❌'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section className="bg-gray-50 py-16 border-t border-gray-100">
+        <div className="max-w-4xl mx-auto px-4">
+          <h2 className="text-center text-xl font-semibold text-gray-900 mb-10">What's included</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {FEATURES.map(({ icon, title, desc }) => (
+              <div key={title} className="bg-white border border-gray-200 rounded-xl p-5">
+                <div className="text-2xl mb-3">{icon}</div>
+                <h3 className="font-semibold text-gray-900 mb-1 text-sm">{title}</h3>
+                <p className="text-xs text-gray-500 leading-relaxed">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 text-center">
+        <h2 className="text-2xl font-bold text-gray-900 mb-3">Ready to get compliant?</h2>
+        <p className="text-gray-500 mb-6 text-sm">Free forever. No sign-up. Download as HTML.</p>
+        <Link href="/generate" className="inline-block btn-primary text-base px-8 py-3">
+          Generate for free →
+        </Link>
+      </section>
+
+      <footer className="border-t border-gray-100 py-6 text-center text-xs text-gray-400">
+        AI Policy Gen · Free legal document generator for AI products ·{' '}
+        Not legal advice — consult a qualified attorney for your specific situation
+      </footer>
     </div>
-  );
+  )
 }
