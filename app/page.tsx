@@ -24,7 +24,10 @@ export default function HomePage() {
       <nav className="border-b border-gray-100">
         <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
           <span className="text-blue-600 font-bold text-lg">AI Policy Gen</span>
-          <Link href="/generate" className="btn-primary text-sm">Generate for free →</Link>
+          <div className="flex items-center gap-4">
+            <Link href="/blog" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">Blog</Link>
+            <Link href="/generate" className="btn-primary text-sm">Generate for free →</Link>
+          </div>
         </div>
       </nav>
 
