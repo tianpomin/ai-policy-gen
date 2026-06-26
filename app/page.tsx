@@ -26,6 +26,7 @@ export default function HomePage() {
           <span className="text-blue-600 font-bold text-lg">AI Policy Gen</span>
           <div className="flex items-center gap-4">
             <Link href="/blog" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">Blog</Link>
+            <Link href="/about" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">About</Link>
             <Link href="/generate" className="btn-primary text-sm">Generate for free →</Link>
           </div>
         </div>
